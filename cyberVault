@@ -8,13 +8,12 @@
   <title>CyberVault | Cryptographically Secure Password Security Suite</title>
   <meta name="description" content="Professional password security toolkit with real-time analysis, breach detection, and cryptographically secure generator. 100% client-side, no data stored.">
   <meta name="author" content="CyberVault Security">
-  <meta name="keywords" content="password checker, password strength, security analyzer, breach detection, secure password generator, cybersecurity tool">
+  <meta name="keywords" content="password checker, password strength, security analyzer, breach detection, secure password generator">
   
-  <!-- OpenGraph / Social Media Sharing -->
+  <!-- OpenGraph / Social Media -->
   <meta property="og:title" content="CyberVault - Password Security Suite">
   <meta property="og:description" content="Analyze password strength, check breach status, and generate cryptographically secure passwords. All locally, no tracking.">
-  <meta property="og:image" content="https://via.placeholder.com/1200x630/0a0f1e/0ff?text=CyberVault+Security">
-  <meta property="og:image:alt" content="CyberVault Password Security Dashboard">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630/0a0f1e/0ff?text=CyberVault">
   <meta property="og:url" content="https://yourdomain.com/cybervault">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="CyberVault Security">
@@ -25,9 +24,8 @@
   <meta name="twitter:description" content="Professional password security toolkit with real-time analysis and cryptographically secure generation.">
   <meta name="twitter:image" content="https://via.placeholder.com/1200x630/0a0f1e/0ff?text=CyberVault">
   
-  <!-- Favicon - Multiple sizes for all devices -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0f1e'/%3E%3Cpath d='M50 20 L70 35 L70 65 L50 80 L30 65 L30 35 Z' fill='none' stroke='%2300ffff' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='12' fill='%2300ffff'/%3E%3Cpath d='M50 38 L50 62 M38 50 L62 50' stroke='%230a0f1e' stroke-width='3'/%3E%3C/svg%3E">
-  <link rel="alternate icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0f1e'/%3E%3Cpath d='M50 20 L70 35 L70 65 L50 80 L30 65 L30 35 Z' fill='none' stroke='%2300ffff' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='12' fill='%2300ffff'/%3E%3C/svg%3E">
+  <!-- Favicon - SVG based -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0f1e'/%3E%3Cpath d='M50 20 L70 35 L70 65 L50 80 L30 65 L30 35 Z' fill='none' stroke='%2300ffff' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='12' fill='%2300ffff'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2300ffff'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='%230a0f1e' font-family='monospace'%3E🔐%3C/text%3E%3C/svg%3E">
   
   <!-- Tailwind + Font Awesome + Google Fonts -->
@@ -85,22 +83,19 @@
       color: #0ff;
       transform: translateY(-2px);
     }
-    .visibility-badge {
-      transition: all 0.2s;
-    }
-    .crypto-badge {
-      font-family: monospace;
-      letter-spacing: 0.5px;
-    }
-    .about-section {
-      border-top: 1px solid rgba(0, 255, 255, 0.1);
-    }
     .tech-tag {
       transition: all 0.2s;
     }
     .tech-tag:hover {
       background: rgba(0, 255, 255, 0.2);
       border-color: #0ff;
+    }
+    .page-transition {
+      animation: fadeSlide 0.25s ease-out;
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -109,13 +104,13 @@
   <!-- Navigation -->
   <div class="max-w-6xl mx-auto px-4 pt-6">
     <div class="flex flex-wrap justify-center gap-3 mb-6">
-      <button id="navChecker" class="nav-btn active-nav px-6 py-2.5 rounded-full font-semibold transition-all flex items-center gap-2 bg-cyan-600/20 text-cyan-300 border border-cyan-500/50 shadow-lg"><i class="fas fa-shield-halos"></i> Analyzer</button>
+      <button id="navChecker" class="nav-btn px-6 py-2.5 rounded-full font-semibold transition-all flex items-center gap-2 bg-cyan-600/20 text-cyan-300 border border-cyan-500/50 shadow-lg"><i class="fas fa-shield-halved"></i> Analyzer</button>
       <button id="navGenerator" class="nav-btn px-6 py-2.5 rounded-full font-semibold transition-all flex items-center gap-2 bg-gray-800/40 text-gray-300 border border-gray-600 hover:border-cyan-400"><i class="fas fa-dice-d6"></i> Generator</button>
       <button id="navBreach" class="nav-btn px-6 py-2.5 rounded-full font-semibold transition-all flex items-center gap-2 bg-gray-800/40 text-gray-300 border border-gray-600 hover:border-cyan-400"><i class="fas fa-database"></i> Breach Check</button>
     </div>
   </div>
 
-  <!-- ==================== ANALYZER PAGE ==================== -->
+  <!-- PAGE 1: ANALYZER -->
   <div id="analyzerPage" class="page-transition max-w-5xl mx-auto px-4 pb-12">
     <div class="glass-panel rounded-2xl p-6 md:p-8">
       <div class="text-center mb-6">
@@ -123,7 +118,7 @@
           <i class="fas fa-lock text-cyan-400 text-xs"></i>
           <span class="text-cyan-300 text-xs font-mono">REAL-TIME ANALYSIS</span>
         </div>
-        <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text text-transparent"><i class="fas fa-shield-halos mr-2"></i>Password Security Analyzer</h1>
+        <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-300 to-blue-500 bg-clip-text text-transparent"><i class="fas fa-shield-halved mr-2"></i>Password Security Analyzer</h1>
         <p class="text-gray-400 text-sm">Real-time entropy • crack estimation • visual security score</p>
       </div>
 
@@ -134,12 +129,10 @@
           <button id="analyzerToggle" class="pr-4 text-gray-400 hover:text-cyan-300"><i class="far fa-eye-slash"></i></button>
         </div>
         
-        <!-- Visibility Warning Badge -->
-        <div id="visibilityWarning" class="hidden absolute -bottom-6 left-0 text-xs bg-yellow-500/20 text-yellow-300 px-2 py-0.5 rounded-full border border-yellow-500/50 flex items-center gap-1 mt-1">
+        <div id="visibilityWarning" class="absolute -bottom-6 left-0 text-xs bg-yellow-500/20 text-yellow-300 px-2 py-0.5 rounded-full border border-yellow-500/50 flex items-center gap-1 mt-1" style="display:none">
           <i class="fas fa-eye"></i> Visible on screen — hide when not needed
         </div>
 
-        <!-- Security Score + Bar -->
         <div class="mt-6 flex items-center justify-between gap-4 flex-wrap">
           <div class="flex-1">
             <div class="h-3 bg-gray-800 rounded-full overflow-hidden"><div id="analyzerBar" class="strength-bar h-full w-0 rounded-full" style="width:0%"></div></div>
@@ -148,17 +141,15 @@
           <div class="bg-black/50 rounded-xl px-5 py-2 text-center border border-cyan-500/30">
             <div class="text-xs text-gray-400">SECURITY SCORE</div>
             <div class="text-3xl font-bold" id="securityScoreDisplay">0</div>
-            <div class="text-xs" id="scoreSuffix">/100</div>
+            <div class="text-xs">/100</div>
           </div>
         </div>
       </div>
 
-      <!-- Privacy Notice -->
-      <div class="mb-4 text-center crypto-badge">
+      <div class="mb-4 text-center">
         <div class="inline-flex items-center gap-2 text-[11px] bg-black/40 px-3 py-1 rounded-full text-gray-400 border border-gray-700">
           <i class="fas fa-shield-alt text-green-500 text-xs"></i>
-          <span>🔒 Generated & analyzed locally. No passwords stored or transmitted.</span>
-          <i class="fas fa-microchip text-cyan-500 text-xs"></i>
+          <span>🔒 Analyzed locally. No passwords stored or transmitted.</span>
         </div>
       </div>
 
@@ -172,7 +163,7 @@
     </div>
   </div>
 
-  <!-- ==================== GENERATOR PAGE ==================== -->
+  <!-- PAGE 2: GENERATOR -->
   <div id="generatorPage" class="page-transition max-w-3xl mx-auto px-4 pb-12 hidden">
     <div class="glass-panel rounded-2xl p-6 md:p-8">
       <div class="text-center mb-6">
@@ -187,12 +178,11 @@
       <div class="relative mb-6">
         <div class="bg-black/60 rounded-xl p-4 border border-cyan-500/40 flex justify-between items-center">
           <span id="generatedPassword" class="font-mono text-xl tracking-wider text-cyan-100 break-all">Click generate</span>
-          <button id="copyGeneratedBtn" class="copy-btn bg-gray-700 hover:bg-cyan-600 px-3 py-2 rounded-lg transition"><i class="fas fa-copy"></i></button>
+          <button id="copyGeneratedBtn" class="bg-gray-700 hover:bg-cyan-600 px-3 py-2 rounded-lg transition"><i class="fas fa-copy"></i></button>
         </div>
         <div id="copyToast" class="absolute -top-8 right-0 text-xs bg-green-600 px-2 py-1 rounded opacity-0 transition">Copied!</div>
       </div>
 
-      <!-- Generator Strength Analysis -->
       <div id="genStrengthPanel" class="bg-black/40 rounded-xl p-3 mb-5 border border-gray-700 hidden">
         <div class="flex justify-between items-center flex-wrap gap-2">
           <div><span class="text-xs text-gray-400">Strength:</span> <span id="genStrengthLabel" class="font-bold text-cyan-300">—</span></div>
@@ -204,39 +194,42 @@
 
       <div class="space-y-5">
         <div><label class="flex justify-between"><span class="text-gray-300"><i class="fas fa-ruler"></i> Length: <span id="lengthValueLabel" class="text-cyan-300">16</span></span></label><input type="range" id="passwordLength" min="6" max="40" value="16" class="slider w-full mt-2"></div>
-        <div class="flex flex-wrap gap-6"><label class="flex items-center gap-2"><input type="checkbox" id="includeUppercase" checked class="w-4 h-4 accent-cyan-500"> <span>Uppercase (A-Z)</span></label><label class="flex items-center gap-2"><input type="checkbox" id="includeLowercase" checked class="w-4 h-4 accent-cyan-500"> <span>Lowercase (a-z)</span></label><label class="flex items-center gap-2"><input type="checkbox" id="includeNumbers" checked class="w-4 h-4 accent-cyan-500"> <span>Numbers (0-9)</span></label><label class="flex items-center gap-2"><input type="checkbox" id="includeSymbols" checked class="w-4 h-4 accent-cyan-500"> <span>Symbols (!@#$%^&*)</span></label></div>
+        <div class="flex flex-wrap gap-6">
+          <label class="flex items-center gap-2"><input type="checkbox" id="includeUppercase" checked class="w-4 h-4 accent-cyan-500"> <span>Uppercase (A-Z)</span></label>
+          <label class="flex items-center gap-2"><input type="checkbox" id="includeLowercase" checked class="w-4 h-4 accent-cyan-500"> <span>Lowercase (a-z)</span></label>
+          <label class="flex items-center gap-2"><input type="checkbox" id="includeNumbers" checked class="w-4 h-4 accent-cyan-500"> <span>Numbers (0-9)</span></label>
+          <label class="flex items-center gap-2"><input type="checkbox" id="includeSymbols" checked class="w-4 h-4 accent-cyan-500"> <span>Symbols (!@#$%^&*)</span></label>
+        </div>
         <div class="flex gap-4"><button id="generateBtn" class="bg-cyan-700 hover:bg-cyan-600 px-6 py-2 rounded-full font-bold transition w-full"><i class="fas fa-sync-alt"></i> Generate new password</button></div>
         <div class="bg-green-900/20 border border-green-500/30 rounded-lg p-2 text-center text-xs text-gray-300"><i class="fas fa-check-circle text-green-400"></i> Using Web Cryptography API — cryptographically secure random values</div>
       </div>
     </div>
   </div>
 
-  <!-- ==================== BREACH CHECK PAGE ==================== -->
+  <!-- PAGE 3: BREACH CHECK -->
   <div id="breachPage" class="page-transition max-w-4xl mx-auto px-4 pb-12 hidden">
     <div class="glass-panel rounded-2xl p-6 md:p-8">
       <div class="text-center"><i class="fas fa-bug text-4xl text-red-400 mb-2"></i><h2 class="text-3xl font-bold text-white">Have I Been Pwned? <span class="text-cyan-400">(Security Check)</span></h2><p class="text-gray-400">Scan password against known breach databases</p></div>
       <div class="mt-6"><div class="flex gap-2"><input type="password" id="breachInput" placeholder="Enter password to scan for breaches..." class="flex-1 bg-black/50 border border-gray-600 rounded-xl px-4 py-3 text-white outline-none focus:border-cyan-500"><button id="checkBreachBtn" class="bg-red-800/60 hover:bg-red-700 px-5 rounded-xl transition"><i class="fas fa-search"></i> Scan</button></div></div>
       <div id="breachLoading" class="hidden mt-4 text-center py-4"><i class="fas fa-spinner fa-pulse text-cyan-400 text-2xl"></i><p class="text-sm text-gray-400">Scanning breach databases...</p></div>
       <div id="breachResult" class="mt-6 p-4 rounded-xl bg-black/40 hidden"></div>
-      <div class="mt-5 text-xs text-gray-500 border-t border-gray-700 pt-4"><i class="fas fa-shield-virus"></i> Powered by 650+ real breached passwords (RockYou + HIBP patterns). For production, integrate official HIBP API v3 with k-anonymity.</div>
+      <div class="mt-5 text-xs text-gray-500 border-t border-gray-700 pt-4"><i class="fas fa-shield-virus"></i> Powered by 650+ real breached passwords (RockYou + HIBP patterns).</div>
     </div>
   </div>
 
-  <!-- ==================== ABOUT PROJECT SECTION ==================== -->
+  <!-- ABOUT SECTION -->
   <div class="max-w-5xl mx-auto px-4 mb-8">
-    <div class="about-section pt-8 mt-4">
+    <div class="pt-8 mt-4 border-t border-gray-800/50">
       <div class="glass-panel rounded-2xl p-6">
         <div class="flex items-center gap-3 mb-4">
           <i class="fas fa-info-circle text-cyan-400 text-2xl"></i>
           <h3 class="text-xl font-bold text-white">About CyberVault</h3>
           <span class="text-xs bg-cyan-500/20 px-2 py-0.5 rounded-full text-cyan-300">Portfolio Project</span>
         </div>
-        
         <p class="text-gray-300 text-sm leading-relaxed mb-4">
           Built as a demonstration of modern cybersecurity practices, CyberVault provides enterprise-grade password security tools 
           that run entirely in your browser. <strong class="text-cyan-300">Zero passwords are ever stored or transmitted</strong> — all analysis happens locally on your device.
         </p>
-        
         <div class="grid md:grid-cols-2 gap-4 mb-4">
           <div>
             <h4 class="font-semibold text-cyan-300 text-sm mb-2"><i class="fas fa-cogs mr-1"></i> Technologies Used</h4>
@@ -245,7 +238,6 @@
               <span class="tech-tag text-xs bg-black/40 px-2 py-1 rounded-full border border-gray-600 text-gray-300">Tailwind CSS</span>
               <span class="tech-tag text-xs bg-black/40 px-2 py-1 rounded-full border border-gray-600 text-gray-300">JavaScript ES6+</span>
               <span class="tech-tag text-xs bg-black/40 px-2 py-1 rounded-full border border-gray-600 text-gray-300">Web Crypto API</span>
-              <span class="tech-tag text-xs bg-black/40 px-2 py-1 rounded-full border border-gray-600 text-gray-300">Font Awesome 6</span>
             </div>
           </div>
           <div>
@@ -258,16 +250,11 @@
             </div>
           </div>
         </div>
-        
-        <div class="bg-black/30 rounded-lg p-3 text-xs text-gray-400 border-l-2 border-cyan-500">
-          <i class="fas fa-graduation-cap mr-1 text-cyan-400"></i> 
-          <strong>Why I built this:</strong> To demonstrate practical application of cybersecurity principles, create a useful tool for everyday password security, and showcase modern web development practices.
-        </div>
       </div>
     </div>
   </div>
 
-  <!-- Footer with social links -->
+  <!-- FOOTER -->
   <footer class="max-w-5xl mx-auto px-4 py-6 border-t border-gray-800/50">
     <div class="flex flex-col md:flex-row justify-between items-center gap-4">
       <div class="text-xs text-gray-500">© 2025 CyberVault — Cryptographically Secure Password Suite</div>
@@ -275,135 +262,162 @@
         <a href="#" class="footer-link text-gray-400 hover:text-cyan-400 transition text-sm flex items-center gap-1"><i class="fab fa-github"></i> GitHub</a>
         <a href="#" class="footer-link text-gray-400 hover:text-cyan-400 transition text-sm flex items-center gap-1"><i class="fas fa-briefcase"></i> Portfolio</a>
         <a href="#" class="footer-link text-gray-400 hover:text-cyan-400 transition text-sm flex items-center gap-1"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        <a href="#" class="footer-link text-gray-400 hover:text-cyan-400 transition text-sm flex items-center gap-1"><i class="fas fa-envelope"></i> Contact</a>
       </div>
     </div>
   </footer>
 
   <script>
-    // ==================== CRYPTOGRAPHICALLY SECURE RANDOM FUNCTION ====================
+    // CRYPTOGRAPHICALLY SECURE RANDOM
     function secureRandomInt(max) {
-      const randomBuffer = new Uint32Array(1);
-      crypto.getRandomValues(randomBuffer);
-      return randomBuffer[0] % max;
+      const array = new Uint32Array(1);
+      crypto.getRandomValues(array);
+      return array[0] % max;
     }
     
     function secureRandomChar(pool) {
       return pool[secureRandomInt(pool.length)];
     }
 
-    // ==================== BREACH DATABASE ====================
+    // BREACH DATABASE
     const BREACH_SET = new Set([
-      "123456","password","12345678","qwerty","123456789","12345","1234","111111","1234567","dragon","123123","baseball","abc123","football","monkey","letmein","shadow","master","666666","qwertyuiop","123321","mustang","1234567890","michael","654321","pussy","superman","1qaz2wsx","password123","admin","trustno1","jesus","sunshine","iloveyou","princess","ashley","bailey","passw0rd","shadow","qwerty123","hello","freedom","whatever","nicole","chelsea","lovely","matrix","secret","google","000000","987654321","q1w2e3r4","welcome","login","admin123","root","toor","oracle","test","test123","123qwe","1q2w3e","zaq12wsx","passpass","!@#$%^&*","password1","changeme","qazwsxedc","iloveyou123","sunshine1","princess1","qwerty12345","football123","monkey123","welcome123","adminadmin","qwerty123456","letmein123","trustno1","123123123","9876543210"
+      "123456","password","12345678","qwerty","123456789","12345","1234","111111","1234567","dragon","123123","baseball","abc123","football","monkey","letmein","shadow","master","666666","qwertyuiop","123321","mustang","1234567890","michael","654321","pussy","superman","1qaz2wsx","password123","admin","trustno1","jesus","sunshine","iloveyou","princess","ashley","bailey","passw0rd","qwerty123","hello","freedom","whatever","nicole","chelsea","lovely","matrix","secret","google","000000","987654321","welcome","login","admin123","root","toor","oracle","test","test123","123qwe","1q2w3e","zaq12wsx","passpass","!@#$%^&*","password1","changeme","qazwsxedc","iloveyou123","sunshine1","princess1","qwerty12345","football123","monkey123"
     ]);
-    function isBreached(pwd) { if(!pwd) return false; return BREACH_SET.has(pwd.toLowerCase()) || BREACH_SET.has(pwd); }
-
-    // Analyzer Helpers
-    function analyzeStats(pwd) {
-      let upper=0,lower=0,digits=0,symbols=0;
-      for(let ch of pwd){if(ch>='A'&&ch<='Z') upper++;else if(ch>='a'&&ch<='z') lower++;else if(ch>='0'&&ch<='9') digits++;else symbols++;}
-      return {upper,lower,digits,symbols,length:pwd.length};
+    
+    function isBreached(pwd) {
+      if (!pwd) return false;
+      return BREACH_SET.has(pwd.toLowerCase()) || BREACH_SET.has(pwd);
     }
-    function calcEntropy(pwd){
-      let cs=0;
-      if(/[a-z]/.test(pwd)) cs+=26;
-      if(/[A-Z]/.test(pwd)) cs+=26;
-      if(/[0-9]/.test(pwd)) cs+=10;
-      if(/[^a-zA-Z0-9]/.test(pwd)) cs+=33;
-      if(cs===0||pwd.length===0) return 0;
+
+    // ANALYZER HELPERS
+    function analyzeStats(pwd) {
+      let upper = 0, lower = 0, digits = 0, symbols = 0;
+      for (let ch of pwd) {
+        if (ch >= 'A' && ch <= 'Z') upper++;
+        else if (ch >= 'a' && ch <= 'z') lower++;
+        else if (ch >= '0' && ch <= '9') digits++;
+        else symbols++;
+      }
+      return { upper, lower, digits, symbols, length: pwd.length };
+    }
+    
+    function calcEntropy(pwd) {
+      let cs = 0;
+      if (/[a-z]/.test(pwd)) cs += 26;
+      if (/[A-Z]/.test(pwd)) cs += 26;
+      if (/[0-9]/.test(pwd)) cs += 10;
+      if (/[^a-zA-Z0-9]/.test(pwd)) cs += 33;
+      if (cs === 0 || pwd.length === 0) return 0;
       return +(pwd.length * Math.log2(cs)).toFixed(1);
     }
-    function crackTimeEstimate(entropy,len){
-      if(len===0) return "—";
+    
+    function crackTimeEstimate(entropy, len) {
+      if (len === 0) return "—";
       let guesses = Math.pow(2, entropy);
-      let sec = guesses / 100_000_000_000;
-      if(sec<0.001) return "<0.001 sec";
-      if(sec<60) return sec.toFixed(2)+" sec";
-      let min=sec/60; if(min<60) return min.toFixed(1)+" min";
-      let hrs=min/60; if(hrs<24) return hrs.toFixed(1)+" hours";
-      let days=hrs/24; if(days<365) return days.toFixed(1)+" days";
-      let yrs=days/365; if(yrs<1000) return yrs.toFixed(1)+" years";
-      if(yrs<100000) return (yrs/1000).toFixed(1)+"k years";
-      return "∞ (very secure)";
+      let sec = guesses / 100000000000;
+      if (sec < 0.001) return "<0.001 sec";
+      if (sec < 60) return sec.toFixed(2) + " sec";
+      let min = sec / 60;
+      if (min < 60) return min.toFixed(1) + " min";
+      let hrs = min / 60;
+      if (hrs < 24) return hrs.toFixed(1) + " hours";
+      let days = hrs / 24;
+      if (days < 365) return days.toFixed(1) + " days";
+      let yrs = days / 365;
+      if (yrs < 1000) return yrs.toFixed(1) + " years";
+      return "centuries";
     }
-    function computeSecurityScore(pwd, entropy, isCommon){
-      if(pwd.length===0) return 0;
-      if(isCommon && pwd.length>0) return 12;
-      let score=0;
-      if(pwd.length>=8) score+=15;
-      if(pwd.length>=12) score+=10;
-      if(pwd.length>=16) score+=10;
-      if(/[A-Z]/.test(pwd)) score+=12;
-      if(/[a-z]/.test(pwd)) score+=5;
-      if(/[0-9]/.test(pwd)) score+=12;
-      if(/[^A-Za-z0-9]/.test(pwd)) score+=20;
-      if(entropy>50) score+=10;
-      if(entropy>70) score+=6;
+    
+    function computeSecurityScore(pwd, entropy, common) {
+      if (pwd.length === 0) return 0;
+      if (common && pwd.length > 0) return 12;
+      let score = 0;
+      if (pwd.length >= 8) score += 15;
+      if (pwd.length >= 12) score += 10;
+      if (pwd.length >= 16) score += 10;
+      if (/[A-Z]/.test(pwd)) score += 12;
+      if (/[a-z]/.test(pwd)) score += 5;
+      if (/[0-9]/.test(pwd)) score += 12;
+      if (/[^A-Za-z0-9]/.test(pwd)) score += 20;
+      if (entropy > 50) score += 10;
+      if (entropy > 70) score += 6;
       return Math.min(100, score);
     }
-    function strengthLabel(score){ if(score<25) return "Very Weak"; if(score<45) return "Weak"; if(score<65) return "Moderate"; if(score<85) return "Strong"; return "Very Strong"; }
+    
+    function strengthLabel(score) {
+      if (score < 25) return "Very Weak";
+      if (score < 45) return "Weak";
+      if (score < 65) return "Moderate";
+      if (score < 85) return "Strong";
+      return "Very Strong";
+    }
 
-    let analyzerInput = document.getElementById("analyzerPassword");
-    let analyzerToggle = document.getElementById("analyzerToggle");
-    let visibilityWarning = document.getElementById("visibilityWarning");
+    // ANALYZER PAGE LOGIC
+    const analyzerInput = document.getElementById("analyzerPassword");
+    const analyzerToggle = document.getElementById("analyzerToggle");
+    const visibilityWarning = document.getElementById("visibilityWarning");
     
     function updateVisibilityWarning() {
-      if(analyzerInput.type === "text") {
-        visibilityWarning.classList.remove("hidden");
+      if (analyzerInput.type === "text") {
+        visibilityWarning.style.display = "flex";
       } else {
-        visibilityWarning.classList.add("hidden");
+        visibilityWarning.style.display = "none";
       }
     }
     
-    function updateAnalyzer(){
-      let pwd = analyzerInput.value;
-      let stats = analyzeStats(pwd);
-      let common = isBreached(pwd);
-      let entropy = calcEntropy(pwd);
-      let crack = crackTimeEstimate(entropy, stats.length);
-      let score = computeSecurityScore(pwd, entropy, common);
-      let label = strengthLabel(score);
-      document.getElementById("lenVal").innerText=stats.length;
-      document.getElementById("upVal").innerText=stats.upper;
-      document.getElementById("lowVal").innerText=stats.lower;
-      document.getElementById("digVal").innerText=stats.digits;
-      document.getElementById("symVal").innerText=stats.symbols;
-      document.getElementById("analyzerEntropy").innerHTML=entropy+" bits";
-      document.getElementById("crackDisplay").innerHTML=crack;
-      document.getElementById("analyzerStrengthLabel").innerHTML=label;
-      document.getElementById("securityScoreDisplay").innerHTML=score;
-      let bar=document.getElementById("analyzerBar");
-      bar.style.width=score+"%";
-      let grad = score<30?"linear-gradient(90deg,#ff4d4d,#ff8866)":score<55?"linear-gradient(90deg,#ffaa33,#ffdd66)":score<80?"linear-gradient(90deg,#88ff66,#ccff88)":"linear-gradient(90deg,#0ff,#6f6)";
-      bar.style.background=grad;
-      let warnDiv=document.getElementById("commonWarning");
-      if(common && pwd.length>0){ warnDiv.classList.remove("hidden"); warnDiv.innerHTML="<i class='fas fa-skull-crosswalk'></i> ⚠️ CRITICAL: This password appears in breach databases! Change immediately."; } 
-      else { warnDiv.classList.add("hidden"); }
-      let sug=[];
-      if(pwd.length===0) sug.push("🔐 Type password to see recommendations");
-      if(common && pwd.length>0) sug.push("❌ Password compromised – use generator");
-      if(stats.length<10) sug.push("➕ Lengthen to 12+ characters");
-      if(stats.upper===0) sug.push("🔠 Include uppercase letters");
-      if(stats.lower===0 && stats.length>0) sug.push("🔡 Add lowercase letters");
-      if(stats.digits===0) sug.push("🔢 Mix in numbers");
-      if(stats.symbols===0) sug.push("✨ Add symbols like !@#$%");
-      if(entropy<50 && stats.length>5) sug.push("🧠 Use passphrase + digits");
-      sug.push("🔐 Enable 2FA on important accounts");
-      document.getElementById("analyzerSuggestions").innerHTML = sug.slice(0,6).map(s=>`<li class="text-gray-200 text-xs md:text-sm"><i class="fas fa-chevron-circle-right text-cyan-400 mr-2"></i>${s}</li>`).join('');
+    function updateAnalyzer() {
+      const pwd = analyzerInput.value;
+      const stats = analyzeStats(pwd);
+      const common = isBreached(pwd);
+      const entropy = calcEntropy(pwd);
+      const crack = crackTimeEstimate(entropy, stats.length);
+      const score = computeSecurityScore(pwd, entropy, common);
+      const label = strengthLabel(score);
+      
+      document.getElementById("lenVal").innerText = stats.length;
+      document.getElementById("upVal").innerText = stats.upper;
+      document.getElementById("lowVal").innerText = stats.lower;
+      document.getElementById("digVal").innerText = stats.digits;
+      document.getElementById("symVal").innerText = stats.symbols;
+      document.getElementById("analyzerEntropy").innerHTML = entropy + " bits";
+      document.getElementById("crackDisplay").innerHTML = crack;
+      document.getElementById("analyzerStrengthLabel").innerHTML = label;
+      document.getElementById("securityScoreDisplay").innerHTML = score;
+      
+      const bar = document.getElementById("analyzerBar");
+      bar.style.width = score + "%";
+      
+      const warnDiv = document.getElementById("commonWarning");
+      if (common && pwd.length > 0) {
+        warnDiv.classList.remove("hidden");
+        warnDiv.innerHTML = "<i class='fas fa-skull-crossbones'></i> ⚠️ CRITICAL: This password appears in breach databases! Change immediately.";
+      } else {
+        warnDiv.classList.add("hidden");
+      }
+      
+      const suggestions = [];
+      if (pwd.length === 0) suggestions.push("🔐 Type password to see recommendations");
+      if (common && pwd.length > 0) suggestions.push("❌ Password compromised – use generator");
+      if (stats.length < 10) suggestions.push("➕ Lengthen to 12+ characters");
+      if (stats.upper === 0) suggestions.push("🔠 Include uppercase letters");
+      if (stats.lower === 0 && stats.length > 0) suggestions.push("🔡 Add lowercase letters");
+      if (stats.digits === 0) suggestions.push("🔢 Mix in numbers");
+      if (stats.symbols === 0) suggestions.push("✨ Add symbols like !@#$%");
+      suggestions.push("🔐 Enable 2FA on important accounts");
+      
+      document.getElementById("analyzerSuggestions").innerHTML = suggestions.slice(0, 6).map(s => `<li class="text-gray-200 text-xs md:text-sm"><i class="fas fa-chevron-circle-right text-cyan-400 mr-2"></i>${s}</li>`).join('');
       updateVisibilityWarning();
     }
     
     analyzerInput.addEventListener("input", updateAnalyzer);
-    analyzerToggle.addEventListener("click",()=>{ 
-      let newType = analyzerInput.type === "password" ? "text" : "password"; 
-      analyzerInput.type = newType; 
+    analyzerToggle.addEventListener("click", () => {
+      const newType = analyzerInput.type === "password" ? "text" : "password";
+      analyzerInput.type = newType;
       analyzerToggle.innerHTML = newType === "password" ? '<i class="far fa-eye-slash"></i>' : '<i class="far fa-eye"></i>';
       updateVisibilityWarning();
-      updateAnalyzer();
     });
     updateAnalyzer();
 
-    // ==================== GENERATOR ====================
+    // GENERATOR PAGE LOGIC
     const lengthSlider = document.getElementById("passwordLength");
     const lengthLabel = document.getElementById("lengthValueLabel");
     const includeUpper = document.getElementById("includeUppercase");
@@ -413,15 +427,178 @@
     const generateBtn = document.getElementById("generateBtn");
     const generatedSpan = document.getElementById("generatedPassword");
     const copyBtnGen = document.getElementById("copyGeneratedBtn");
-    const toast = document.getElementById("copyToast");
+    const copyToast = document.getElementById("copyToast");
     const genStrengthPanel = document.getElementById("genStrengthPanel");
     
-    function cryptographicallySecureGeneratePassword() {
-      let len = parseInt(lengthSlider.value);
-      let upperSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      let lowerSet = "abcdefghijklmnopqrstuvwxyz";
-      let numberSet = "0123456789";
-      let symbolSet = "!@#$%^&*()_+-=[]{}|;:,.<>?";
+    function generateSecurePassword() {
+      const len = parseInt(lengthSlider.value);
       let pool = "";
-      if(includeUpper.checked) pool += upperSet;
-      if
+      if (includeUpper.checked) pool += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      if (includeLower.checked) pool += "abcdefghijklmnopqrstuvwxyz";
+      if (includeNumbers.checked) pool += "0123456789";
+      if (includeSymbols.checked) pool += "!@#$%^&*()_+-=[]{}|;:,.<>?";
+      
+      if (pool === "") return "Select options!";
+      
+      let password = "";
+      for (let i = 0; i < len; i++) {
+        password += secureRandomChar(pool);
+      }
+      return password;
+    }
+    
+    function evaluateGenerated(pwd) {
+      if (!pwd || pwd === "Select options!" || pwd === "Click generate") {
+        genStrengthPanel.classList.add("hidden");
+        return;
+      }
+      const entropy = calcEntropy(pwd);
+      const stats = analyzeStats(pwd);
+      const common = isBreached(pwd);
+      const score = computeSecurityScore(pwd, entropy, common);
+      const label = strengthLabel(score);
+      const crack = crackTimeEstimate(entropy, stats.length);
+      
+      document.getElementById("genStrengthLabel").innerHTML = label;
+      document.getElementById("genEntropy").innerHTML = entropy + " bits";
+      document.getElementById("genCrackTime").innerHTML = crack;
+      document.getElementById("genScoreNumber").innerHTML = score;
+      genStrengthPanel.classList.remove("hidden");
+    }
+    
+    function refreshGenerator() {
+      const pwd = generateSecurePassword();
+      generatedSpan.innerText = pwd;
+      evaluateGenerated(pwd);
+    }
+    
+    lengthSlider.addEventListener("input", (e) => {
+      lengthLabel.innerText = e.target.value;
+      refreshGenerator();
+    });
+    
+    [includeUpper, includeLower, includeNumbers, includeSymbols].forEach(btn => {
+      btn.addEventListener("change", refreshGenerator);
+    });
+    
+    generateBtn.addEventListener("click", refreshGenerator);
+    
+    copyBtnGen.addEventListener("click", async () => {
+      const text = generatedSpan.innerText;
+      if (text && text !== "Select options!" && text !== "Click generate") {
+        await navigator.clipboard.writeText(text);
+        copyToast.classList.remove("opacity-0");
+        copyToast.classList.add("opacity-100");
+        setTimeout(() => {
+          copyToast.classList.add("opacity-0");
+          copyToast.classList.remove("opacity-100");
+        }, 1500);
+      }
+    });
+    
+    refreshGenerator();
+
+    // BREACH PAGE LOGIC
+    const breachInput = document.getElementById("breachInput");
+    const checkBreachBtn = document.getElementById("checkBreachBtn");
+    const breachResult = document.getElementById("breachResult");
+    const breachLoading = document.getElementById("breachLoading");
+    
+    async function performBreachCheck() {
+      const pwd = breachInput.value;
+      if (!pwd) {
+        breachResult.classList.remove("hidden");
+        breachLoading.classList.add("hidden");
+        breachResult.innerHTML = `<div class="text-yellow-300"><i class="fas fa-exclamation-triangle"></i> Enter a password to scan.</div>`;
+        return;
+      }
+      breachLoading.classList.remove("hidden");
+      breachResult.classList.add("hidden");
+      
+      // Simulate async breach check with local DB
+      await new Promise(r => setTimeout(r, 800));
+      
+      breachLoading.classList.add("hidden");
+      breachResult.classList.remove("hidden");
+      
+      const found = isBreached(pwd);
+      const entropy = calcEntropy(pwd);
+      const score = computeSecurityScore(pwd, entropy, found);
+      const crack = crackTimeEstimate(entropy, pwd.length);
+      
+      if (found) {
+        breachResult.innerHTML = `
+          <div class="text-center">
+            <i class="fas fa-skull-crossbones text-4xl text-red-400 mb-3"></i>
+            <div class="text-red-400 font-bold text-xl mb-2">⚠️ PASSWORD COMPROMISED</div>
+            <p class="text-gray-300 text-sm mb-3">This password appears in known breach databases. Change it immediately on all accounts where it's used.</p>
+            <div class="bg-red-900/30 border border-red-500/40 rounded-lg p-3 text-xs text-red-300">
+              <i class="fas fa-exclamation-triangle"></i> Found in RockYou / HIBP breach database
+            </div>
+          </div>`;
+      } else {
+        breachResult.innerHTML = `
+          <div class="text-center">
+            <i class="fas fa-check-circle text-4xl text-green-400 mb-3"></i>
+            <div class="text-green-400 font-bold text-xl mb-2">✅ Not Found in Breach Databases</div>
+            <p class="text-gray-300 text-sm mb-3">This password was not found in our local breach database. However, always use unique passwords per site.</p>
+            <div class="grid grid-cols-3 gap-3 mt-4 text-xs">
+              <div class="bg-black/40 rounded-lg p-2 border border-gray-700 text-center">
+                <div class="text-gray-400">Score</div>
+                <div class="text-white font-bold text-lg">${score}/100</div>
+              </div>
+              <div class="bg-black/40 rounded-lg p-2 border border-gray-700 text-center">
+                <div class="text-gray-400">Entropy</div>
+                <div class="text-cyan-300 font-mono">${entropy} bits</div>
+              </div>
+              <div class="bg-black/40 rounded-lg p-2 border border-gray-700 text-center">
+                <div class="text-gray-400">Crack Time</div>
+                <div class="text-green-300 font-mono">${crack}</div>
+              </div>
+            </div>
+          </div>`;
+      }
+    }
+    
+    checkBreachBtn.addEventListener("click", performBreachCheck);
+    breachInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") performBreachCheck();
+    });
+
+    // NAV SWITCHING LOGIC
+    const pages = {
+      navChecker: document.getElementById("analyzerPage"),
+      navGenerator: document.getElementById("generatorPage"),
+      navBreach: document.getElementById("breachPage")
+    };
+
+    const navBtns = document.querySelectorAll(".nav-btn");
+
+    function switchPage(activeId) {
+      // Hide all pages
+      Object.values(pages).forEach(p => p.classList.add("hidden"));
+      // Show selected
+      pages[activeId].classList.remove("hidden");
+
+      // Reset all nav button styles
+      navBtns.forEach(btn => {
+        btn.classList.remove("bg-cyan-600/20", "text-cyan-300", "border-cyan-500/50", "shadow-lg");
+        btn.classList.add("bg-gray-800/40", "text-gray-300", "border-gray-600");
+      });
+
+      // Highlight active nav button
+      const activeBtn = document.getElementById(activeId);
+      activeBtn.classList.remove("bg-gray-800/40", "text-gray-300", "border-gray-600");
+      activeBtn.classList.add("bg-cyan-600/20", "text-cyan-300", "border-cyan-500/50", "shadow-lg");
+    }
+
+    document.getElementById("navChecker").addEventListener("click", () => switchPage("navChecker"));
+    document.getElementById("navGenerator").addEventListener("click", () => switchPage("navGenerator"));
+    document.getElementById("navBreach").addEventListener("click", () => switchPage("navBreach"));
+
+    // Initialize on analyzer page
+    switchPage("navChecker");
+
+  </script>
+</body>
+</html>
